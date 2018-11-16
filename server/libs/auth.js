@@ -241,6 +241,7 @@ module.exports = function (passport) {
       callbackURL: appconfig.host + '/login/oidc/callback',
       scope: appconfig.auth.oidc.scope
     }, (iss, sub, profile, jwtClaims, accessToken, refreshToken, params, cb) => {
+      console.log(iss, sub, profile, jwtClaims, accessToken, refreshToken, params)
       db.User.processProfile({
         id: jwtClaims.sub,
         provider: 'oidc',
