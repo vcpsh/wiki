@@ -6,10 +6,11 @@ RUN apk update && \
     mkdir -p /var/wiki && \
     mkdir -p /logs
 
-WORKDIR /var/wiki
+WORKDIR /etc
+COPY ./tools/build/supervisord.conf .
 
-COPY ./tools/build/supervisord.conf /etc/supervisord.conf
-COPY . /var/wiki
+WORKDIR /var/wiki
+COPY . .
 
 RUN yarn && \
     yarn run build
